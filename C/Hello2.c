@@ -1,0 +1,15 @@
+#include "gaspardos_user_x86.h"
+
+
+
+
+
+
+void gmain() {
+
+
+
+    gaspard_printf_term("TEST 2 \n");
+
+    while(1);
+}
