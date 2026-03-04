@@ -20,6 +20,15 @@ make SRC="Hello.c Hello2.c" all #for displaying very simple message
 make SRC="Hello.c Hello2.c" run # run will open qemu
 ```
 
+## Complex example (kernel driver developement)
+
+Some examples have their own makefile rule, like pci
+```
+cd C
+make pci # to compile
+make pci-run # run qemu to test
+```
+This example show VendorId and DeviceId PCI ID.
 
 
 The ISO output is always : YOURGaspardOS.iso.

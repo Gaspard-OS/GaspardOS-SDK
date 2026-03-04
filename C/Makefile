@@ -38,6 +38,7 @@ $(ARCHIVE): $(OBJETS)
 
 clean:
 	rm -rf *.o $(ARCHIVE) lib/lib.lib  lib/utils.lib ../archive/write YOURGaspardOS.iso
+	make -C PciTest/ clean
 
 iso: 
 	cp ../iso/GaspardOS.iso YOURGaspardOS.iso
@@ -47,6 +48,14 @@ iso:
 		-map ABC /boot/ABC \
 		-boot_image any keep
 
+pci: clean lib_rule pci_compile iso
+
+pci-run: clean lib_rule pci_compile iso
+	qemu-system-i386 -cdrom YOURGaspardOS.iso 
+
+pci_compile:
+	make -C PciTest/ all
+	../archive/write ABC PciTest/Pci.test
 
 run: all
 	qemu-system-i386 -cdrom YOURGaspardOS.iso 
