@@ -202,10 +202,15 @@ global gaspardapi_load_app
 
 gaspardapi_load_app:
 
+    push ebp
+    mov ebp, esp
+
     mov eax, 67         
-    mov ebx, [esp+4]    ;
+    mov ebx, [ebp+8]     
 
     int 0x80
+
+    pop ebp
     ret
 
 

@@ -51,7 +51,7 @@ iso:
 pci: clean lib_rule pci_compile iso
 
 pci-run: clean lib_rule pci_compile iso
-	qemu-system-i386 -cdrom YOURGaspardOS.iso 
+	qemu-system-i386 -cdrom YOURGaspardOS.iso -audiodev alsa,id=snd0 -device AC97,audiodev=snd0
 
 pci_compile:
 	make -C PciTest/ all

@@ -117,7 +117,7 @@ extern void gaspardapi_clearscreen(); // text mode
 /// @brief load an app and start the gmain's of the app
 /// @param index must be equal to >= 1
 /// @return  -1 = failed; 1 =  ok
-extern int gaspardapi_load_app(int index); // statut en return ADMIN FONCTION
+extern int gaspardapi_load_app(int index,bool admin); // statut en return ADMIN FONCTION
 
 /// @brief stop an app already started 
 /// @param index must be equal to >= 1
