@@ -13,6 +13,9 @@ enum QueueType {
     MOUSE,// reserved for future use
     KEYBOARD,// reserved for future use
     IPC,
+    ENVOI_PROMPT,
+    NETWORK,
+    CLICK_BUTTON,
     
 
 };

@@ -11,7 +11,7 @@ CFLAGS := -x c -c \
           -O0 \
 			-m32 \
           -g 
-          
+CC = gcc      
 OBJETS = $(SRC:.c=.o)
 LINKER   =  gmain_linker_x86.lld
 
@@ -19,15 +19,15 @@ LDFLAGS := -m elf_i386   -T $(LINKER)  -nostdlib
 
 all : clean lib_rule $(OBJETS)  archive_rule $(ARCHIVE) iso
 archive_rule: 
-	clang ../archive/GaspardOSARCHIVE.c -o ../archive/write
+	$(CC) ../archive/GaspardOSARCHIVE.c -o ../archive/write
 
 lib_rule:
-	clang -c $(CFLAGS) lib/utils.c -o lib/utils.lib
+	$(CC) -c $(CFLAGS) lib/utils.c -o lib/utils.lib
 	nasm -f elf32 lib/lib.asm -o lib/lib.lib
 
 
 %.o: %.c
-	clang -c $(CFLAGS) $< -o $@ 
+	$(CC) -c $(CFLAGS) $< -o $@ 
 	ld.lld $(LDFLAGS) lib/utils.lib lib/lib.lib $(OBJ)  $@   -o $@ 
 
 

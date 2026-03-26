@@ -87,9 +87,15 @@ global gaspardapi_alloc
 gaspardapi_alloc:
 
 
-    mov eax, 56          
-    mov ebx, [esp+4]    ; size et eax renvoi le ptr
+    push ebp
+    mov ebp, esp
+
+    mov eax, 56         
+    mov ebx, [ebp+8]     
+
     int 0x80
+    ; le result est dans eax
+    pop ebp
     ret
 
 
@@ -267,6 +273,184 @@ gaspardapi_receive_ipc:
     ret
 
 
+global test_vmx
+test_vmx:
+
+
+
+    mov eax, 72         
+
+    int 0x80
+    ret
+
+global gaspardapi_ide_test
+gaspardapi_ide_test:
+
+
+
+    mov eax, 73         
+    mov ebx, [esp+4]    ;
+
+    int 0x80
+    ret
+global gaspardapi_ide_iso9660_init
+gaspardapi_ide_iso9660_init:
+
+
+
+    mov eax, 74         
+    mov ebx, [esp+4]    ;
+
+    int 0x80
+    ret
+global gaspardapi_gui_start
+gaspardapi_gui_start:
+
+
+
+    mov eax, 75         
+
+    int 0x80
+    ret
+global gaspardapi_exit
+gaspardapi_exit:
+
+
+
+    mov eax, 76         
+    mov ebx, [esp+4]    ;
+
+    int 0x80
+    ret
+
+global gaspardapi_erase
+gaspardapi_erase:
+
+
+
+    mov eax, 77         
+
+    int 0x80
+    ret
+
+global gaspardapi_ide_list
+
+gaspardapi_ide_list:
+    mov eax, 78          ; numéro de syscall
+    mov ebx, [esp+4]     ; argument 1 = pointeur vers la string
+    int 0x80
+    ret
+global gaspardapi_info_print
+
+gaspardapi_info_print:
+    mov eax, 79          ; numéro de syscall
+    mov ebx, [esp+4]     ; 
+    int 0x80
+    ret
+global gaspardapi_ide_status
+
+gaspardapi_ide_status:
+    mov eax, 73          ; numéro de syscall
+    mov ebx, [esp+4]     ; 
+    int 0x80
+    ret
+
+global gaspardapi_clear_screen
+
+gaspardapi_clear_screen:
+    mov eax, 80          ; numéro de syscall
+    mov ebx, [esp+4]     ; 
+    int 0x80
+    ret
+
+global gaspardapi_windows_create
+gaspardapi_windows_create:
+    push ebp
+    mov  ebp, esp
+
+    mov eax, 81
+    mov ebx, [ebp+8]     ; struct
+
+
+    int 0x80
+
+    pop ebp
+    ret
+global gaspardapi_windows_button
+gaspardapi_windows_button:
+    push ebp
+    mov  ebp, esp
+
+    mov eax, 82
+    mov ebx, [ebp+8]     ; struct
+
+
+    int 0x80
+
+    pop ebp
+    ret
+    
+
+global gaspardapi_windows_destroy
+
+gaspardapi_windows_destroy:
+
+    push ebp
+    mov  ebp, esp
+
+    mov eax, 84
+    mov ebx, [ebp+8]     ; struct
+
+
+    int 0x80
+
+    pop ebp
+    ret
+
+global gaspardapi_windows_button_destroy
+
+gaspardapi_windows_button_destroy:
+
+    push ebp
+    mov  ebp, esp
+
+    mov eax, 83
+    mov ebx, [ebp+8]     ; struct
+
+
+    int 0x80
+
+    pop ebp
+    ret
+global gaspardapi_windows_update
+
+gaspardapi_windows_update:
+
+    push ebp
+    mov  ebp, esp
+
+    mov eax, 84
+
+
+    int 0x80
+
+    pop ebp
+    ret
+
+global gaspardapi_windows_button_clicked
+
+gaspardapi_windows_button_clicked:
+
+    push ebp
+    mov  ebp, esp
+
+    mov eax, 86
+
+
+    int 0x80
+
+    pop ebp
+    ret
 
 global global_gmain
 
