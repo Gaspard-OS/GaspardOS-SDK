@@ -6,7 +6,7 @@
 For debian/ubuntu :
 
 ```
-sudo apt install clang llvm nasm xorriso mtools qemu-system-x86 make
+sudo apt install clang gcc llvm nasm xorriso mtools qemu-system-x86 make
 ```
 
 Only LLVM and CLANG no gcc.
