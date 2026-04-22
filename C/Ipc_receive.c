@@ -18,17 +18,22 @@ void gmain() {
 
         while(1);
     }
-    enum QueueType status = gaspardapi_getstatus();
+   // ANCHOR : on traite que les event IPC pour évité la lecture inutile du buffer
+    buffer[0] = 0xFFFFFFFF;
     while(1) {
 
-            gaspardapi_receive_ipc(buffer);
+        enum QueueType status = gaspardapi_getstatus();
+        if(status != IPC) {
+            continue;
+        }
+
+        gaspardapi_receive_ipc(buffer);
 
         if(buffer[0] != 0xFFFFFFFF) {
 
-            gaspard_printf_term("lol message receive \n");
+            gaspard_printf_term("message recu \n");
+            buffer[0] = 0xFFFFFFFF;
         }
-
-    status = gaspardapi_getstatus();
 
     }
 
